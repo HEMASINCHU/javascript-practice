@@ -112,7 +112,109 @@
 // console.log(null || 0);
 // console.log(undefined || null);
 // console.log(undefined || 2);
-console.log(1 && 0);
-console.log(null && 0);
-console.log(undefined && null);
-console.log(undefined && 2);
+// console.log(1 && 0);
+// console.log(null && 0);
+// console.log(undefined && null);
+// console.log(undefined && 2);
+
+// let first = null;
+// let second = "Hema";
+// console.log(first ?? second);
+
+// let user = {
+//   name: "hema",
+//   rollno: 20,
+// };
+// console.log(user);
+// user.age = 10;
+// console.log(user);
+// delete user.rollno;
+// console.log(user);
+// user["company"] = "sadana";
+// console.log(user);
+// user["timing"] = "20:08pm";
+// console.log(user);
+// delete user["timing"];
+// console.log(user);
+// console.log("name" in user);
+// for (let key in user) {
+//   console.log(key, user[key]);
+// }
+// users = {
+//   10: "hema",
+//   5: "poornima",
+//   3: "rakesh",
+// };
+// console.log(users);
+
+//copying
+
+// let message = "Hello";
+// let phrase = message;
+// console.log(phrase);
+
+// let user = {
+//   name: "hema",
+//   age: 25,
+// };
+// let admin = user;
+// console.log(admin);
+
+// admin.name = "poornima";
+// console.log(admin);
+
+//lopping
+
+// let i = 0;
+// while (i < 3) {
+//   console.log(i);
+//   i++;
+// }
+
+// let j = 4;
+// do {
+//   console.log(j);
+//   j++;
+// } while (j < 10);
+
+// for (let k = 0; k < 4; k++) {
+//   console.log(k);
+// }
+
+// let x = 2;
+// switch (x) {
+//   case 1:
+//     console.log("first ");
+//     break;
+//   case 2:
+//     console.log("second");
+//     break;
+//   default:
+//     console.log("dont know");
+// }
+
+//functions
+
+// function showMessage() {
+//   console.log("Hello everyone");
+// }
+// showMessage();
+
+// function showMessage() {
+//   let message = "Hello";
+//   console.log(message);
+// }
+// showMessage();
+// console.log(message); //error
+
+// let show = "Hello Hema";
+// showM();
+// function showM() {
+//   console.log(show);
+// }
+// console.log(show);
+
+function showMessage(from, text) {
+  console.log(from + ":" + text);
+}
+showMessage("ann", "ant");
