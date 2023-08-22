@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>JavaScript Quiz</title>
+  </head>
+  <body>
+    <h1>Javascript Quizz</h1>
+    <input type="text" id="question" placeholder="Enter the question" />
+    <input
+      type="text"
+      id="option"
+      placeholder="Enter comma separated list of options"
+    />
+    <input type="text" id="answer" placeholder="Enter the answer" />
+    <button id="addQuestions">Add Questions</button>
+    <div class="quiz-container">
+      <div class="question">
+        <p id="question-number">Question 1 of 6</p>
+        <p id="question-text">Question text goes here.</p>
+      </div>
+      <div class="options">
+        <label><input type="radio" name="answer" value="1" /> Option 1</label>
+        <label><input type="radio" name="answer" value="2" /> Option 2</label>
+        <label><input type="radio" name="answer" value="3" /> Option 3</label>
+        <label><input type="radio" name="answer" value="4" /> Option 4</label>
+      </div>
+      <div class="controls">
+        <button id="previous-btn">Previous</button>
+        <button id="next-btn">Next</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
