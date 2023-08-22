@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.calculator {
+  width: 400px;
+  margin: 0 auto;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: antiquewhite;
+}
+.calculator input {
+  width: 200px;
+  padding: 5px;
+  margin: 5px auto;
+}
+.calculator h1,
+p {
+  color: aqua;
+  font-size: 16px;
+}
+
+.display {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 3px;
+  font-size: 18px;
+}
+
+button {
+  width: 40px;
+  height: 30px;
+  font-size: 14px;
+  margin: 5px;
+}
