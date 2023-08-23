@@ -1,4 +1,3 @@
-// script.js
 const questions = [
   {
     text: "What is JS stands for?",
