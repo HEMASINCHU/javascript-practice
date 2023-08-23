@@ -31,6 +31,29 @@ const inputEl = document.querySelector("#question");
 const answerEl = document.querySelector("#answer");
 const optionsEl = document.querySelector("#option");
 
+const timerCountElement = document.getElementById("timer-count");
+let timerCount = 0;
+let timerInterval;
+function updateTimerDisplay() {
+  timerCountElement.textContent = timerCount;
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timerCount++;
+    updateTimerDisplay();
+
+    const timeLimitInSeconds = 30;
+    if (timerCount >= timeLimitInSeconds) {
+      stopTimer();
+      alert("Time's up!");
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
 function loadQuestion(questionIndex) {
   const question = questions[questionIndex];
   questionText.textContent = question.text;
@@ -98,6 +121,9 @@ nextBtn.addEventListener("click", () => {
       }
 
       updateQuestionNumber();
+      stopTimer();
+      timerCount = 0;
+      startTimer();
     }
   } else {
     alert("Please select an option before proceeding.");
@@ -105,6 +131,7 @@ nextBtn.addEventListener("click", () => {
 });
 
 loadQuestion(currentQuestionIndex);
+startTimer();
 
 previousBtn.disabled = true;
 
