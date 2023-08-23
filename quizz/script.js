@@ -1,3 +1,4 @@
+// script.js
 const questions = [
   {
     text: "What is JS stands for?",
@@ -16,15 +17,20 @@ const questions = [
   },
 ];
 
-const totalQuestions = questions.length;
+let totalQuestions = questions.length;
 let currentQuestionIndex = 0;
 let score = 0;
+const MIN_SCORE = 3;
 
 const questionText = document.getElementById("question-text");
 const questionNumber = document.getElementById("question-number");
 const options = document.getElementsByName("answer");
 const previousBtn = document.getElementById("previous-btn");
 const nextBtn = document.getElementById("next-btn");
+const btnAdd = document.getElementById("addQuestions");
+const inputEl = document.querySelector("#question");
+const answerEl = document.querySelector("#answer");
+const optionsEl = document.querySelector("#option");
 
 function loadQuestion(questionIndex) {
   const question = questions[questionIndex];
@@ -34,14 +40,13 @@ function loadQuestion(questionIndex) {
     options[i].checked = false;
     options[i].nextSibling.textContent = question.options[i];
   }
+  updateQuestionNumber();
 }
 
 function updateQuestionNumber() {
-  questionNumber.textContent = `Question ${
-    currentQuestionIndex + 1
-  } of ${totalQuestions}`;
+  questionNumber.textContent = `Question ${currentQuestionIndex + 1}`;
 }
-
+previousBtn.disabled = true;
 function checkAnswer(selectedIndex) {
   if (selectedIndex === questions[currentQuestionIndex].correct) {
     score++;
@@ -65,7 +70,7 @@ previousBtn.addEventListener("click", () => {
     nextBtn.disabled = false;
   }
   if (currentQuestionIndex === 0) {
-    previousBtn.disabled = true;
+    previousBtn.disabled = false;
   }
   updateQuestionNumber();
 });
@@ -74,14 +79,14 @@ nextBtn.addEventListener("click", () => {
   const selectedOption = document.querySelector('input[name="answer"]:checked');
 
   if (selectedOption) {
-    const selectedIndex = parseInt(selectedOption.value);
+    const selectedIndex = +selectedOption.value;
     checkAnswer(selectedIndex);
 
     if (currentQuestionIndex === totalQuestions - 1) {
-      if (score >= 3) {
+      if (score >= MIN_SCORE) {
         showResult();
       } else {
-        alert("You did not score 10 or more points.");
+        alert("You did not score 3 or more points.");
       }
     } else {
       currentQuestionIndex++;
@@ -101,22 +106,35 @@ nextBtn.addEventListener("click", () => {
 });
 
 loadQuestion(currentQuestionIndex);
+
 previousBtn.disabled = true;
+
 updateQuestionNumber();
-const btnAdd = document.getElementById("addQuestions");
-const inputEl = document.querySelector("#question");
-const answerEl = document.querySelector("#answer");
-const optionsEl = document.querySelector("#option");
 
 btnAdd.addEventListener("click", () => {
-  //console.log("clicked ", inputEl.value, answerEl.value, optionsEl.value);
-  window.confirm("Enter the question that you want to add?");
+  const optionsList = optionsEl.value.split(",").map((option) => option.trim());
+
+  if (optionsList.length < 2) {
+    alert("Please enter at least 2 options.");
+    return;
+  }
+
+  const correctIndex = parseInt(answerEl.value);
+
+  if (correctIndex >= optionsList.length || isNaN(correctIndex)) {
+    alert("Invalid correct answer index.");
+    return;
+  }
+
   questions.push({
-    question: inputEl.value,
-    answer: answerEl.value,
-    options: optionsEl.value,
+    text: inputEl.value,
+    options: optionsList,
+    correct: correctIndex,
   });
+
   inputEl.value = "";
   answerEl.value = "";
   optionsEl.value = "";
+
+  totalQuestions = questions.length;
 });
