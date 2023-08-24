@@ -2,17 +2,20 @@ const questions = [
   {
     text: "What is JS stands for?",
     options: ["JavaScript", "Java", "Python", "Angular"],
-    correct: 0,
+    anwerkey: 0,
+    actualKey: 1,
   },
   {
     text: "What is Array data type",
     options: ["mixed datatype", "beta", "alpha", "gamma"],
-    correct: 0,
+    anwerkey: 0,
+    actualKey: 1,
   },
   {
     text: "What is Object data type",
     options: ["mixed datatype", "beta", "alpha", "gamma"],
-    correct: 0,
+    exceptedKey: 0,
+    actualKey: 1,
   },
 ];
 
@@ -26,27 +29,24 @@ const questionNumber = document.getElementById("question-number");
 const options = document.getElementsByName("answer");
 const previousBtn = document.getElementById("previous-btn");
 const nextBtn = document.getElementById("next-btn");
-const btnAdd = document.getElementById("addQuestions");
-const inputEl = document.querySelector("#question");
-const answerEl = document.querySelector("#answer");
-const optionsEl = document.querySelector("#option");
 
 const timerCountElement = document.getElementById("timer-count");
-let timerCount = 0;
+let timerCount = 30;
 let timerInterval;
+
 function updateTimerDisplay() {
   timerCountElement.textContent = timerCount;
 }
 
 function startTimer() {
   timerInterval = setInterval(() => {
-    timerCount++;
+    timerCount--;
     updateTimerDisplay();
 
-    const timeLimitInSeconds = 30;
-    if (timerCount >= timeLimitInSeconds) {
-      stopTimer();
+    const timeLimitInSeconds = 0;
+    if (timerCount <= timeLimitInSeconds) {
       alert("Time's up!");
+      stopTimer();
     }
   }, 1000);
 }
@@ -54,6 +54,7 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timerInterval);
 }
+
 function loadQuestion(questionIndex) {
   const question = questions[questionIndex];
   questionText.textContent = question.text;
@@ -63,14 +64,22 @@ function loadQuestion(questionIndex) {
     options[i].nextSibling.textContent = question.options[i];
   }
   updateQuestionNumber();
+  stopTimer();
+  timerCount = 30;
+  updateTimerDisplay();
+  startTimer();
 }
 
 function updateQuestionNumber() {
-  questionNumber.textContent = `Question ${currentQuestionIndex + 1}`;
+  questionNumber.textContent = `Question ${
+    currentQuestionIndex + 1
+  } of  ${totalQuestions}`;
 }
+
 previousBtn.disabled = true;
+
 function checkAnswer(selectedIndex) {
-  if (selectedIndex === questions[currentQuestionIndex].correct) {
+  if (selectedIndex === questions[currentQuestionIndex].anwerkey) {
     score++;
   }
 }
@@ -94,7 +103,6 @@ previousBtn.addEventListener("click", () => {
   if (currentQuestionIndex === 0) {
     previousBtn.disabled = false;
   }
-  updateQuestionNumber();
 });
 
 nextBtn.addEventListener("click", () => {
@@ -119,11 +127,6 @@ nextBtn.addEventListener("click", () => {
       if (currentQuestionIndex === totalQuestions - 1) {
         nextBtn.textContent = "Submit";
       }
-
-      updateQuestionNumber();
-      stopTimer();
-      timerCount = 0;
-      startTimer();
     }
   } else {
     alert("Please select an option before proceeding.");
@@ -134,33 +137,4 @@ loadQuestion(currentQuestionIndex);
 startTimer();
 
 previousBtn.disabled = true;
-
 updateQuestionNumber();
-
-btnAdd.addEventListener("click", () => {
-  const optionsList = optionsEl.value.split(",").map((option) => option.trim());
-
-  if (optionsList.length < 2) {
-    alert("Please enter at least 2 options.");
-    return;
-  }
-
-  const correctIndex = parseInt(answerEl.value);
-
-  if (correctIndex >= optionsList.length || isNaN(correctIndex)) {
-    alert("Invalid correct answer index.");
-    return;
-  }
-
-  questions.push({
-    text: inputEl.value,
-    options: optionsList,
-    correct: correctIndex,
-  });
-
-  inputEl.value = "";
-  answerEl.value = "";
-  optionsEl.value = "";
-
-  totalQuestions = questions.length;
-});
