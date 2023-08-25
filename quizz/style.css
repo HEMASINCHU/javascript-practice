@@ -24,12 +24,13 @@ input[type="text"] {
   margin-left: 10px;
 }
 .btn {
-  padding: 10px 20px;
+  padding: 5px 5px;
   background-color: var(--primary-color);
   color: #fff;
   margin-left: 10px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 12px;
 }
 button:disabled {
   background-color: #ccc;
