@@ -2,18 +2,21 @@ const questions = [
   {
     text: "What is JS stands for?",
     options: ["JavaScript", "Java", "Python", "Angular"],
+    answerKey: 0,
     expectedKey: 0,
     actualKey: 1,
   },
   {
     text: "What is Array data type",
     options: ["mixed datatype", "beta", "alpha", "gamma"],
+    answerKey: 0,
     expectedKey: 0,
     actualKey: 1,
   },
   {
     text: "What is Object data type",
     options: ["collection of properties", "beta", "alpha", "gamma"],
+    answerKey: 0,
     expectedKey: 0,
     actualKey: 1,
   },
@@ -61,7 +64,7 @@ function loadQuestion(questionIndex) {
   questionText.textContent = question.text;
   for (let i = 0; i < options.length; i++) {
     options[i].value = i;
-    options[i].checked = i == question.actualKey;
+    options[i].checked = i === question.actualKey;
     options[i].nextSibling.textContent = question.options[i];
   }
   updateQuestionNumber();
@@ -78,20 +81,21 @@ function updateQuestionNumber() {
 previousBtn.disabled = true;
 
 function checkAnswer(selectedIndex) {
-  if (selectedIndex === questions[currentQuestionIndex].expectedKey) {
+  const currentQuestion = questions[currentQuestionIndex];
+  if (selectedIndex === currentQuestion.expectedKey) {
     score++;
   }
-  questions[currentQuestionIndex].actualKey = selectedIndex;
+  currentQuestion.actualKey = selectedIndex;
 }
 
 function showResult() {
   const quizContainer = document.querySelector(".quiz-container");
   quizContainer.innerHTML = `
-    <div class="result">
-      <h2>Quiz Complete!</h2>
-      <p>Your score: ${score} out of ${totalQuestions}</p>
-    </div>
-  `;
+      <div class="result">
+        <h2>Quiz Complete!</h2>
+        <p>Your score: ${score} out of ${totalQuestions}</p>
+      </div>
+    `;
 }
 
 function moveToNextQuestion() {
@@ -145,7 +149,19 @@ nextBtn.addEventListener("click", () => {
   if (selectedOption) {
     const selectedIndex = +selectedOption.value;
     checkAnswer(selectedIndex);
-    moveToNextQuestion();
+
+    if (currentQuestionIndex === totalQuestions - 1) {
+      showResult();
+    } else {
+      currentQuestionIndex++;
+      timerCount = 30;
+      loadQuestion(currentQuestionIndex);
+      previousBtn.disabled = false;
+
+      if (currentQuestionIndex === totalQuestions - 1) {
+        nextBtn.textContent = "Submit";
+      }
+    }
   } else {
     alert("Please select an option before proceeding.");
   }
