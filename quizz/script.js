@@ -82,8 +82,12 @@ previousBtn.disabled = true;
 
 function checkAnswer(selectedIndex) {
   const currentQuestion = questions[currentQuestionIndex];
-  if (selectedIndex === currentQuestion.expectedKey) {
+  if (selectedIndex === currentQuestion.answerKey) {
     score++;
+  } else {
+    if (currentQuestion.actualKey === currentQuestion.answerKey) {
+      score--;
+    }
   }
   currentQuestion.actualKey = selectedIndex;
 }
@@ -167,4 +171,32 @@ nextBtn.addEventListener("click", () => {
   }
 });
 
+const btnAdd = document.getElementById("addQuestions");
+const inputEl = document.querySelector("#question");
+const answerEl = document.querySelector("#answer");
+const optionsEl = document.querySelector("#option");
+
+btnAdd.addEventListener("click", () => {
+  const newQuestion = inputEl.value;
+  const newAnswer = parseInt(answerEl.value);
+  const newOptions = optionsEl.value.split(",");
+
+  questions.push({
+    text: newQuestion,
+    options: newOptions,
+    answerKey: newAnswer,
+    expectedKey: newAnswer,
+    actualKey: -1,
+  });
+
+  inputEl.value = "";
+  answerEl.value = "";
+  optionsEl.value = "";
+
+  totalQuestions = questions.length;
+
+  updateQuestionNumber();
+});
+
 loadQuestion(currentQuestionIndex);
+updateQuestionNumber();

@@ -18,10 +18,11 @@ body {
 
 input[type="text"] {
   width: 25%;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-left: 10px;
+  font-size: 12px;
 }
 .btn {
   padding: 5px 5px;
@@ -73,4 +74,24 @@ button:hover {
 .question {
   display: flex;
   justify-content: space-between;
+}
+.dark-theme {
+  --primary-color: #3498db;
+  background-color: #37e99c;
+  color: #110505;
+}
+.light-theme {
+  --primary-color: #007bff;
+  background-color: #d430da;
+  color: #333;
+}
+
+.dark-theme .btn {
+  background-color: var(--primary-color);
+  color: #210303;
+}
+
+.light-theme .btn {
+  background-color: var(--primary-color);
+  color: #210404;
 }
