@@ -75,31 +75,11 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
-.dark-theme {
-  --primary-color: #3498db;
-  background-color: #37e99c;
-  color: #110505;
-}
-.light-theme {
-  --primary-color: #007bff;
-  background-color: #d430da;
-  color: #333;
-}
-
-.dark-theme .btn {
-  background-color: var(--primary-color);
-  color: #210303;
-}
-
-.light-theme .btn {
-  background-color: var(--primary-color);
-  color: #210404;
-}
-.dark-theme {
+body.dark-theme {
   background-color: #333;
-  color: #fff;
+  color: #dd7e7e;
 }
-.light-theme {
-  background-color: #fff;
-  color: #333;
+body.light-theme {
+  background-color: rgb(245, 167, 239);
+  color: #000;
 }

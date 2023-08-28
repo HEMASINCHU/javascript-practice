@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="light-theme">
     <h1 class="quizz-heading">Javascript Quizz</h1>
     <input type="text" id="question" placeholder="Enter the question" />
     <input
@@ -23,6 +23,9 @@
     <input type="text" id="answer" placeholder="Enter the answer" />
     <button type="button" id="addQuestions" class="btn btn-outline-primary">
       Add Questions
+    </button>
+    <button type="button" id="theme-toggle" class="btn btn-outline-secondary">
+      Toggle
     </button>
     <div class="quiz-container">
       <div class="question">
@@ -50,12 +53,6 @@
         </button>
       </div>
     </div>
-    <button id="dark-theme-btn" class="btn btn-outline-secondary">
-      Dark Theme
-    </button>
-    <button id="light-theme-btn" class="btn btn-outline-secondary">
-      Light Theme
-    </button>
 
     <script src="script.js"></script>
   </body>

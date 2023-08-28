@@ -32,9 +32,8 @@ const questionNumber = document.getElementById("question-number");
 const options = document.getElementsByName("answer");
 const previousBtn = document.getElementById("previous-btn");
 const nextBtn = document.getElementById("next-btn");
-const darkThemeBtn = document.getElementById("dark-theme-btn");
-const lightThemeBtn = document.getElementById("light-theme-btn");
 const quizContainer = document.querySelector(".quiz-container");
+const themeToggleBtn = document.getElementById("theme-toggle");
 
 const timerCountElement = document.getElementById("timer-count");
 let timerCount = 30;
@@ -132,6 +131,23 @@ function moveToNextQuestion() {
     }
   }
 }
+themeToggleBtn.addEventListener("click", toggleTheme);
+
+function toggleTheme() {
+  const body = document.body;
+
+  if (body.classList.contains("light-theme")) {
+    body.classList.remove("light-theme");
+    body.classList.add("dark-theme");
+  } else {
+    body.classList.remove("dark-theme");
+    body.classList.add("light-theme");
+  }
+}
+
+toggleTheme();
+updateQuestionNumber();
+loadQuestion(currentQuestionIndex);
 
 previousBtn.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
@@ -199,19 +215,5 @@ btnAdd.addEventListener("click", () => {
   totalQuestions = questions.length;
 
   updateQuestionNumber();
-});
-
-loadQuestion(currentQuestionIndex);
-function applyTheme(themeClass) {
-  quizContainer.classList.remove("dark-theme", "light-theme");
-  quizContainer.classList.add(themeClass);
-}
-
-darkThemeBtn.addEventListener("click", () => {
-  applyTheme("dark-theme");
-});
-
-lightThemeBtn.addEventListener("click", () => {
-  applyTheme("light-theme");
 });
 updateQuestionNumber();
