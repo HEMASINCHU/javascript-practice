@@ -32,6 +32,9 @@ const questionNumber = document.getElementById("question-number");
 const options = document.getElementsByName("answer");
 const previousBtn = document.getElementById("previous-btn");
 const nextBtn = document.getElementById("next-btn");
+const darkThemeBtn = document.getElementById("dark-theme-btn");
+const lightThemeBtn = document.getElementById("light-theme-btn");
+const quizContainer = document.querySelector(".quiz-container");
 
 const timerCountElement = document.getElementById("timer-count");
 let timerCount = 30;
@@ -199,4 +202,16 @@ btnAdd.addEventListener("click", () => {
 });
 
 loadQuestion(currentQuestionIndex);
+function applyTheme(themeClass) {
+  quizContainer.classList.remove("dark-theme", "light-theme");
+  quizContainer.classList.add(themeClass);
+}
+
+darkThemeBtn.addEventListener("click", () => {
+  applyTheme("dark-theme");
+});
+
+lightThemeBtn.addEventListener("click", () => {
+  applyTheme("light-theme");
+});
 updateQuestionNumber();
