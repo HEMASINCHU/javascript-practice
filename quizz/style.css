@@ -75,11 +75,13 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
-body.dark-theme {
-  background-color: #333;
-  color: #dd7e7e;
-}
-body.light-theme {
+
+.light-theme {
   background-color: rgb(245, 167, 239);
   color: #000;
+}
+
+.dark-theme {
+  background-color: #333;
+  color: #dd7e7e;
 }
