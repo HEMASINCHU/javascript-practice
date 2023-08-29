@@ -21,12 +21,10 @@ const questions = [
     actualKey: 1,
   },
 ];
-
 let totalQuestions = questions.length;
 let currentQuestionIndex = 0;
 let score = 0;
 const MIN_SCORE = 1;
-
 const questionText = document.getElementById("question-text");
 const questionNumber = document.getElementById("question-number");
 const options = document.getElementsByName("answer");
@@ -34,15 +32,12 @@ const previousBtn = document.getElementById("previous-btn");
 const nextBtn = document.getElementById("next-btn");
 const quizContainer = document.querySelector(".quiz-container");
 const themeToggleBtn = document.getElementById("theme-toggle");
-
 const timerCountElement = document.getElementById("timer-count");
 let timerCount = 30;
 let timerInterval;
-
 function updateTimerDisplay() {
   timerCountElement.textContent = timerCount;
 }
-
 function startTimer() {
   timerInterval = setInterval(() => {
     if (timerCount > 0) {
@@ -55,11 +50,9 @@ function startTimer() {
     }
   }, 1000);
 }
-
 function stopTimer() {
   clearInterval(timerInterval);
 }
-
 function loadQuestion(questionIndex) {
   stopTimer();
   const question = questions[questionIndex];
@@ -73,15 +66,12 @@ function loadQuestion(questionIndex) {
   updateTimerDisplay();
   startTimer();
 }
-
 function updateQuestionNumber() {
   questionNumber.textContent = `Question ${
     currentQuestionIndex + 1
   } of ${totalQuestions}`;
 }
-
 previousBtn.disabled = true;
-
 function checkAnswer(selectedIndex) {
   const currentQuestion = questions[currentQuestionIndex];
   if (selectedIndex === currentQuestion.answerKey) {
@@ -93,21 +83,17 @@ function checkAnswer(selectedIndex) {
   }
   currentQuestion.actualKey = selectedIndex;
 }
-
 function showResult() {
   const quizContainer = document.querySelector(".quiz-container");
   quizContainer.innerHTML = `
       <div class="result">
         <h2>Quiz Complete!</h2>
         <p>Your score: ${score} out of ${totalQuestions}</p>
-      </div>
-    `;
+      </div>    `;
 }
-
 function moveToNextQuestion() {
   stopTimer();
   timerCount = 30;
-
   if (currentQuestionIndex === totalQuestions - 1) {
     if (score >= MIN_SCORE) {
       showResult();
@@ -132,40 +118,32 @@ function moveToNextQuestion() {
   }
 }
 themeToggleBtn.addEventListener("click", toggleTheme);
-
 function toggleTheme() {
   const body = document.body;
   body.classList.toggle("dark-theme");
 }
-
 toggleTheme();
 updateQuestionNumber();
 loadQuestion(currentQuestionIndex);
-
 previousBtn.addEventListener("click", () => {
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
     timerCount = 30;
     loadQuestion(currentQuestionIndex);
     nextBtn.disabled = false;
-
     if (currentQuestionIndex === 0) {
       previousBtn.disabled = true;
     }
-
     if (currentQuestionIndex !== totalQuestions - 1) {
       nextBtn.textContent = "Next";
     }
   }
 });
-
 nextBtn.addEventListener("click", () => {
   const selectedOption = document.querySelector('input[name="answer"]:checked');
-
   if (selectedOption) {
     const selectedIndex = +selectedOption.value;
     checkAnswer(selectedIndex);
-
     if (currentQuestionIndex === totalQuestions - 1) {
       showResult();
     } else {
@@ -173,7 +151,6 @@ nextBtn.addEventListener("click", () => {
       timerCount = 30;
       loadQuestion(currentQuestionIndex);
       previousBtn.disabled = false;
-
       if (currentQuestionIndex === totalQuestions - 1) {
         nextBtn.textContent = "Submit";
       }
@@ -182,17 +159,14 @@ nextBtn.addEventListener("click", () => {
     alert("Please select an option before proceeding.");
   }
 });
-
 const btnAdd = document.getElementById("addQuestions");
 const inputEl = document.querySelector("#question");
 const answerEl = document.querySelector("#answer");
 const optionsEl = document.querySelector("#option");
-
 btnAdd.addEventListener("click", () => {
   const newQuestion = inputEl.value;
   const newAnswer = parseInt(answerEl.value);
   const newOptions = optionsEl.value.split(",");
-
   questions.push({
     text: newQuestion,
     options: newOptions,
@@ -200,13 +174,10 @@ btnAdd.addEventListener("click", () => {
     expectedKey: newAnswer,
     actualKey: -1,
   });
-
   inputEl.value = "";
   answerEl.value = "";
   optionsEl.value = "";
-
   totalQuestions = questions.length;
-
   updateQuestionNumber();
 });
 updateQuestionNumber();
