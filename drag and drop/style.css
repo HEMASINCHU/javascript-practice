@@ -12,8 +12,9 @@ body {
 .section {
   flex: 1;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #debebe;
   background-color: #f9f9f9;
+  border-radius: 10px;
   margin: 10px;
 }
 .task {
