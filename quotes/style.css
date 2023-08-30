@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+#new-quote-button {
+  text-align: center;
+  margin-top: 20px;
+}
+#author-photo {
+  border-radius: 50%;
+}
+.container {
+  width: 50%;
+  background-color: rgb(230, 235, 235);
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
