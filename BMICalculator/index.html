@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="mb-4">BMI Calculator</h1>
+      <div class="form-group">
+        <label for="weight">Weight (kg): </label>
+        <input type="number" class="form-control" id="weight" step="0.01" />
+      </div>
+
+      <div class="form-group">
+        <label for="height">Height (m): </label>
+        <input type="number" class="form-control" id="height" step="0.01" />
+      </div>
+
+      <button class="btn btn-primary" id="calculateBtn">Calculate BMI</button>
+
+      <h2 class="mt-4">Your BMI:</h2>
+      <p id="bmiResult"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
