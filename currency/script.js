@@ -10,17 +10,17 @@ document.getElementById("convert").addEventListener("click", function () {
 
 function getExchangeRate(fromCurrency, toCurrency) {
   const exchangeRates = {
-    usd: {
-      eur: 0.85,
-      gbp: 0.75,
-    },
     eur: {
-      usd: 1.18,
-      gbp: 0.88,
+      usd: 1.09,
+      rs: 89.97,
     },
-    gbp: {
-      usd: 1.33,
-      eur: 1.14,
+    usd: {
+      eur: 0.92,
+      rs: 82.78,
+    },
+    rs: {
+      usd: 0.012,
+      eur: 0.011,
     },
   };
 
