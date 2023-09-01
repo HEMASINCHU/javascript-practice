@@ -27,11 +27,11 @@ form.addEventListener("submit", function (e) {
   if (password.value.trim() === "") {
     passwordError.textContent = "Password is required";
     hasError = true;
-  } else if (password.value.length < 6) {
-    passwordError.textContent = "Password must be at least 6 characters long";
+  } else if (password.value.length < 4) {
+    passwordError.textContent = "Password must be at least 4 characters";
     hasError = true;
-  } else if (password.value.length > 20) {
-    passwordError.textContent = "Password cannot exceed 20 characters";
+  } else if (password.value.length > 6) {
+    passwordError.textContent = "Password cannot exceed 6 characters";
     hasError = true;
   }
   if (confirmPassword.value.trim() === "") {
