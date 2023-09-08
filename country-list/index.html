@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>country-list</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css"
+      integrity="sha384-TY6zp5jhl1i4JFB0zSY2w5n3j6j8Xm+5nDSkGzK3g0qjTmwoSGf6zp7pE8R95Lk8S"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div>
+      <select id="countrySelect" class="form-select">
+        <option value="">Select a country</option>
+      </select>
+      <button onclick="fetchCountryInfo()" class="btn btn-primary">
+        select
+      </button>
+    </div>
+    <div id="country-info"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
